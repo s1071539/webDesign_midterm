@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+	.github-icon {
+		cursor: pointer;
+		background-image: url('images/github.gif');
+		background-size: cover;
+		z-index: 2;
+	}
+
+	.mail-icon::hover {
+		cursor: pointer;
+		background-image: url('images/mail.gif');
+		background-size: cover;
+		width: 40px;
+		height: 40px;
+		margin-left: 20px;
+	}
+</style>
+
+<head>
+	<title>Web Fundamentals Workshop</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+	<div>
+		<!-- Wrapper-->
+		<div id="wrapper">
+			<canvas id="test-canvas" style='height: 100%; width: 100%; position: absolute;'></canvas>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<a href="#" class="icon solid fa-home"><span>Home</span></a>
+				<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
+				<a href="#contact" class="icon solid fa-envelope" id="contact"><span>Contact</span></a>
+				<a class="github-icon" onclick="window.open('https:/github.com/s1071539')"><span>Github</span></a>
+			</nav>
+
+			<!-- https://github.com/s1071539 -->
+
+			<!-- Main -->
+			<div id="main">
+
+				<!-- Me -->
+				<article id="home" class="panel intro">
+					<header>
+						<h1></h1>
+						<p>1071539</p>
+					</header>
+					<a href="#work" class="jumplink pic">
+						<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+						<img src="images/profile.jpg" alt="" />
+					</a>
+				</article>
+
+				<!-- Work -->
+				<article id="work" class="panel">
+					<header>
+						<h2>Work</h2>
+					</header>
+					<section>
+						<div class="row">
+							<div class="col-4 col-6-medium col-12-small">
+								<a href="component/lab1-tonightEating" class="image fit"><img src="images/pic01.jpg"
+										alt=""></a>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<a href="component/lab2-arrangement" class="image fit"><img src="images/pic02.jpg"
+										alt=""></a>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<a href="component/lab3-psychologicalTest" class="image fit"><img src="images/pic03.jpg"
+										alt=""></a>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<a href="component/lab4-RPG" class="image fit"><img src="images/pic04.jpg" alt=""></a>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<a href="component/lab5-youtube" class="image fit"><img src="images/pic05.jpg"
+										alt=""></a>
+							</div>
+							<div class="col-4 col-6-medium col-12-small">
+								<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
+							</div>
+						</div>
+					</section>
+				</article>
+
+				<!-- Contact -->
+				<article id="contact" class="panel">
+					<header>
+						<h2>Contact Me</h2>
+					</header>
+					<form action="#" method="post">
+						<div>
+							<div class="row">
+								<div class="col-6 col-12-medium">
+									<input type="text" name="name" placeholder="Name" />
+								</div>
+								<div class="col-6 col-12-medium">
+									<input type="text" name="email" placeholder="Email" />
+								</div>
+								<div class="col-12">
+									<input type="text" name="subject" placeholder="Subject" />
+								</div>
+								<div class="col-12">
+									<textarea name="message" placeholder="Message" rows="6"></textarea>
+								</div>
+								<div class="col-12">
+									<input type="submit" value="Send Message" />
+								</div>
+							</div>
+						</div>
+					</form>
+				</article>
+
+			</div>
+
+			<!-- Footer -->
+			<div id="footer">
+				<ul class="copyright">
+					<li>&copy; Untitled.</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</div>
+</body>
+
+<script>
+	class BubbleAnimate {
+		constructor(canvas, number = 20, radius = 6, color = [255, 255, 255], speed = 0.2, speedRandomPercent = 0.5, startFull = true) {
+			try {
+				this.canvas = canvas;
+			} catch {
+				throw ("please provide canvas dom");
+				return;
+			}
+			this.ctx = canvas.getContext('2d');
+			this.width = canvas.width;
+			this.height = canvas.height;
+			this.radius = radius;
+			this.color = color;
+			this.speed = speed;
+			this.bubbles = [];
+			this.speedRandomPercent = speedRandomPercent;
+			this.startFull = startFull;
+			for (let i = 0; i < number; i++) {
+				this.bubbles.push({
+					isReborn: true,
+					speed: .02,
+				});
+			}
+			this.renderCanvas();
+		};
+		renderCanvas() {
+			this.ctx.clearRect(0, 0, this.width, this.height);
+			this.renderBubbles();
+			window.requestAnimationFrame(() => this.renderCanvas());
+		};
+		renderBubbles() {
+			let initPoint = [this.width / 2, this.height];
+			for (let i = 0; i < this.bubbles.length; i++) {
+				let bubble = this.bubbles[i];
+				if (bubble.isReborn) {
+					let x = (Math.random() - 0.5) * this.width * 0.96 + initPoint[0];
+					let bubbleRadius = this.radius + Math.floor(Math.random() * 2 - 1) * 0.5;
+					let y = this.startFull ? this.height * Math.random() : (initPoint[1] - bubbleRadius);
+					bubble.radius = bubbleRadius;
+					bubble.currentLocation = [x, y];
+					let opacity = 0.2 + 0.4 * Math.random();
+					bubble.color = `rgba(${this.color[0]}, ${this.color[1]},${this.color[2]}, ${opacity})`;
+					bubble.isReborn = false;
+				} else {
+					this.renderBubble(bubble);
+					if (bubble.currentLocation[1] <= bubble.radius) {
+						bubble.isReborn = true;
+					}
+					bubble.currentLocation[1] = bubble.currentLocation[1] - bubble.speed;
+				}
+			}
+		}
+		renderBubble(item) {
+			this.ctx.beginPath();
+			this.ctx.arc(...item.currentLocation, item.radius, 0, 2 * Math.PI);
+			this.ctx.fillStyle = item.color;
+			this.ctx.fill();
+		}
+	}
+	let canvas = document.getElementById('test-canvas');
+	let bubbleCreater= new BubbleAnimate(canvas);
+	bubbleCreater.renderCanvas();
+</script>
+
+</html>

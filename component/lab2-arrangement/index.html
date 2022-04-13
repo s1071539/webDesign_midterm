@@ -1,17 +1,104 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<style>
+    .mainDiv {
+        background-image: url('img/pic05.jpg');
+        background-size: cover;
+        display: inline-block;
+        width: 50vw;
+    }
+
+    .mytooltip {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        display: inline-block;
+        z-index: 2;
+    }
+
+    .mytooltip .mytooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #fff;
+        color: black;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 2;
+        top: -5px;
+        right: 105%;
+
+        width: 300px;
+        word-break: break-word;
+        text-align: initial;
+        padding: 25px;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    .mytooltip:hover .mytooltiptext {
+        visibility: visible;
+    }
+</style>
+
+<head>
     <meta charset="utf-8">
     <title>Club Course</title>
     <link rel="stylesheet" href="style.css">
-    </head>
+    <link rel="stylesheet2" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <body>
+</head>
+
+<body>
+    <a onclick="back()" style="position: absolute; top: 30px; left: 30px; color: white;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-bar-left"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z" />
+        </svg>
+    </a>
+
+    <div class="mytooltip">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-info-circle" style="color: white;"
+            viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path
+                d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+        </svg>
+        <span class="mytooltiptext">
+            內容參考 <br>圖示： Boostrap Icons <br> 時間選擇器： W3Schools <br> 背景特效： https://github.com/rocksdanister/WebGL-Fluid-Simulation
+        </span>
+    </div>
+
+    <canvas
+        style="position: absolute; width: 100vw; height: 100vh; top: 0; left: 0; z-index: -1; overflow: hidden;"></canvas>
+    <script src="js/script.js"></script>
+
+    <div style="text-align: center; margin: 50px; color: darkviolet;">
         <h1>社團課程時間表</h1>
-        <input type="date"  name="timepicker" style="" />
-        <table id="courseTable"></table>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="topic.js"></script>
-        <script src="main.js"></script>
-    </body>
+        <input type="date" name="timepicker"
+            style="color: darkblue; background: dodgerblue; border-radius: 17px; width: 220px; height: 35px; font-size: 20px;" />
+    </div>
+
+
+
+
+    <table id="courseTable" border></table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="topic.js"></script>
+    <script src="main.js"></script>
+
+
+</body>
+
+<script>
+    function back() {
+        history.back();
+    }
+</script>
+
 </html>

@@ -16,6 +16,43 @@
 		height: 40px;
 		margin-left: 20px;
 	}
+
+	.tooltip {
+		position: absolute;
+		top: 30px;
+		right: 30px;
+		display: inline-block;
+		z-index: 2;
+	}
+
+	.tooltip .tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		background-color: black;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+
+		/* Position the tooltip */
+		position: absolute;
+		z-index: 2;
+		top: -5px;
+		right: 105%;
+
+		width: 300px;
+		word-break: break-word;
+		text-align: initial;
+		padding: 25px;
+
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.tooltip:hover .tooltiptext {
+		visibility: visible;
+	}
 </style>
 
 <head>
@@ -32,7 +69,22 @@
 	<div>
 		<!-- Wrapper-->
 		<div id="wrapper">
+			<!-- tool tip -->
+			<div class="tooltip">
+				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+					class="bi bi-info-circle" viewBox="0 0 16 16">
+					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+					<path
+						d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+				</svg>
+				<span class="tooltiptext">
+					內容參考 <br>HTML/CSS使用：w3schools <br> 背景氣泡：canvas <br> 圖示： Boostrap Icons
+				</span>
+			</div>
+
+
 			<canvas id="test-canvas" style='height: 100%; width: 100%; position: absolute;'></canvas>
+			<!-- https://github.com/haofanya/funnyWeb/blob/master/bubblesAnimate.html -->
 
 			<!-- Nav -->
 			<nav id="nav">
@@ -50,7 +102,7 @@
 				<!-- Me -->
 				<article id="home" class="panel intro">
 					<header>
-						<h1></h1>
+						<h1>黃俊凱</h1>
 						<p>1071539</p>
 					</header>
 					<a href="#work" class="jumplink pic">
@@ -67,26 +119,23 @@
 					<section>
 						<div class="row">
 							<div class="col-4 col-6-medium col-12-small">
-								<a href="component/lab1-tonightEating" class="image fit"><img src="images/pic01.jpg"
+								<a href="component/lab1-tonightEating" class="fit" ><img src="images/pic01.jpg" style="width: 100%; height: 100%;"
 										alt=""></a>
 							</div>
 							<div class="col-4 col-6-medium col-12-small">
-								<a href="component/lab2-arrangement" class="image fit"><img src="images/pic02.jpg"
+								<a href="component/lab2-arrangement" class="fit"><img src="images/pic02.jpg" style="width: 100%; height: 100%;"
 										alt=""></a>
 							</div>
 							<div class="col-4 col-6-medium col-12-small">
-								<a href="component/lab3-psychologicalTest" class="image fit"><img src="images/pic03.jpg"
+								<a href="component/lab3-psychologicalTest" class="fit"><img src="images/pic03.jpg" style="width: 100%; height: 100%;"
 										alt=""></a>
 							</div>
 							<div class="col-4 col-6-medium col-12-small">
-								<a href="component/lab4-RPG" class="image fit"><img src="images/pic04.jpg" alt=""></a>
+								<a href="component/lab4-RPG" class="fit"><img src="images/pic04.jpg" alt="" style="width: 100%; height: 100%;"></a>
 							</div>
 							<div class="col-4 col-6-medium col-12-small">
-								<a href="component/lab5-youtube" class="image fit"><img src="images/pic05.jpg"
+								<a href="component/lab5-youtube" class="fit"><img src="images/pic05.jpg" style="width: 100%; height: 100%;"
 										alt=""></a>
-							</div>
-							<div class="col-4 col-6-medium col-12-small">
-								<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
 							</div>
 						</div>
 					</section>
@@ -202,7 +251,7 @@
 		}
 	}
 	let canvas = document.getElementById('test-canvas');
-	let bubbleCreater= new BubbleAnimate(canvas);
+	let bubbleCreater = new BubbleAnimate(canvas);
 	bubbleCreater.renderCanvas();
 </script>
 
